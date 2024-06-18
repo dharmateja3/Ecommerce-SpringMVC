@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>User Profile</title>
+</head>
+<body>
+<div class="container mt-5">
+    <h2>User Profile</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Profile Information</h5>
+            <p class="card-text"><strong>Username:</strong> <span th:text="${user.username}"></span></p>
+            <p class="card-text"><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+            <p class="card-text"><strong>Address:</strong> <span th:text="${user.address}"></span></p>
+            <p class="card-text"><strong>Mobile Number:</strong> <span th:text="${user.mobileNumber}"></span></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

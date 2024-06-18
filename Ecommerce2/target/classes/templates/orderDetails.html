@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Order Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Order Details</h2>
+        <h4>User Information</h4>
+        <p>Username: <span th:text="${user.username}"></span></p>
+        <p>Email: <span th:text="${user.email}"></span></p>
+        <p>Address: <span th:text="${user.address}"></span></p>
+        <p>Mobile Number: <span th:text="${user.mobileNumber}"></span></p>
+        
+        <h4>Cart Items</h4>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="cartItem : ${cartItems}">
+                    <td th:text="${cartItem.product.name}">Product Name</td>
+                    <td th:text="${cartItem.product.price}">Price</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h4>Total Amount: $<span th:text="${totalAmount}">0.00</span></h4>
+
+        <!--<a class="btn btn-success" href="/orderPlaced">Place Order</a>-->
+		<form th:action="@{/placeOrder}" method="post">
+		            <button type="submit" class="btn btn-success">Place Order</button>
+		        </form>
+    </div>
+</body>
+</html>

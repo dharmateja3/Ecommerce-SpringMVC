@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Login</title>
+</head>
+<body>
+	<div class="my-5 d-flex justify-content-center ">
+<div class="col-md-4 border rounded">
+    <h2 class="text-center mt-2">Login</h2>
+    <form th:action="@{/login}" th:object="${user}" method="post" class="my-2">
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" th:field="*{username}" required>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" th:field="*{password}" required>
+        </div>
+        <center><button type="submit" class="btn btn-primary px-5">Login</button></center>
+		<span>Don't have an account? <a href="/register">Register</a></span>
+    </form>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Cart</title>
+</head>
+<body>
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/welcome">Ecommerce</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/welcome">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/products">Products</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/orders">Orders</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/cart}">Cart <i class="fa fa-shopping-cart"></i>
+                    <span class="badge badge-pill badge-primary" th:text="${cartCount}">0</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <h2>Shopping Cart</h2>
+    <div class="row">
+        <div th:each="cartItem : ${cartItems}" class="col-md-4 mb-3">
+            <div class="card">
+                <img th:src="@{${cartItem.product.imageUrl}}" class="card-img-top" alt="Product Image">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${cartItem.product.name}"></h5>
+                    <p class="card-text" th:text="${cartItem.product.description}"></p>
+                    <p class="card-text" th:text="'Price: $' + ${cartItem.product.price}"></p>
+                    <form th:action="@{/removeFromCart}" method="post">
+                        <input type="hidden" name="productId" th:value="${cartItem.product.id}"/>
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cart</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Your Cart</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="cartItem : ${cartItems}">
+                    <td th:text="${cartItem.product.name}">Product Name</td>
+                    <td th:text="${cartItem.product.price}">Price</td>
+                    <td>
+                        <form th:action="@{/removeFromCart}" method="post">
+                            <input type="hidden" name="productId" th:value="${cartItem.product.id}" />
+                            <button type="submit" class="btn btn-danger">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h4>Total Amount: $<span th:text="${totalAmount}">0.00</span></h4>
+        
+        <a class="btn btn-primary" href="/buyNow">Buy Now</a>
+    </div>
+</body>
+</html>
+
+
